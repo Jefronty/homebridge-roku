@@ -2,6 +2,7 @@
 
 const { Client, keys } = require('roku-client');
 const map = require('lodash.map');
+var wol = require('wake_on_lan');
 
 let Service;
 let Characteristic;
@@ -43,7 +44,9 @@ class RokuAccessory {
       .setCharacteristic(Characteristic.Manufacturer, this.info.vendorName)
       .setCharacteristic(Characteristic.Model, this.info.modelName)
       .setCharacteristic(Characteristic.Name, this.info.userDeviceName)
+      .setCharacteristic(Characteristic.connection, this.info.networkType)
       .setCharacteristic(Characteristic.SerialNumber, this.info.serialNumber);
+    if
 
     return accessoryInfo;
   }
@@ -59,6 +62,7 @@ class RokuAccessory {
         this.roku.keypress('Power')
           .then(() => callback(null))
           .catch(callback);
+      /* add wol in catch */
       });
 
     return switch_;

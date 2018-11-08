@@ -61,8 +61,16 @@ class RokuAccessory {
         this.poweredOn = value;
         this.roku.keypress('Power')
           .then(() => callback(null))
-          .catch(callback);
-      /* add wol in catch */
+          .catch(function(this.info,value,callback){
+            /* attempt WOL */
+            if (value){
+              // get connectoin type and MAC from info
+              // attempt WOL here, until ready just pass callback
+              callback(null);
+            }else{
+              callback(null);
+            }
+          });
       });
 
     return switch_;

@@ -46,7 +46,6 @@ class RokuAccessory {
       .setCharacteristic(Characteristic.Name, this.info.userDeviceName)
       .setCharacteristic(Characteristic.connection, this.info.networkType)
       .setCharacteristic(Characteristic.SerialNumber, this.info.serialNumber);
-    if
 
     return accessoryInfo;
   }

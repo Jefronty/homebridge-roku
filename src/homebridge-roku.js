@@ -66,7 +66,12 @@ class RokuAccessory {
             if (value){
               // get connectoin type and MAC from info
               // attempt WOL here, until ready just pass callback
-              callback(null);
+              if( this.info.networkType == 'ethernet' ){
+                wol.wake(this.info.ethernetMac);
+              }else if( this.info.networkType == 'wifi' && this.info.supportsWakeOnWlan == 'true'){
+                // send Wifi WOL 
+                wol.wake(this.info.wifiMac);
+              }
             }else{
               callback(null);
             }
